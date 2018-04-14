@@ -13,7 +13,6 @@ public class UserDataDTO {
   private String email;
   @ApiModelProperty(position = 2)
   List<Role> roles;
-
   public String getUsername() {
     return username;
   }

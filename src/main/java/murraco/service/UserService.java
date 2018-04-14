@@ -2,6 +2,8 @@ package murraco.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import murraco.dto.UserDTO;
+import murraco.response.CustomResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,10 +32,10 @@ public class UserService {
   @Autowired
   private AuthenticationManager authenticationManager;
 
-  public String signin(String username, String password) {
+  public String signin(UserDTO userDTO) {
     try {
-      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-      return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
+      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
+      return jwtTokenProvider.createToken(userDTO.getUsername(), userRepository.findByUsername(userDTO.getUsername()).getRoles());
     } catch (AuthenticationException e) {
       throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
     }
@@ -49,8 +51,9 @@ public class UserService {
     }
   }
 
-  public void delete(String username) {
+  public CustomResponse delete(String username) {
     userRepository.deleteByUsername(username);
+    return new CustomResponse("Successfull to delete username: '" + username + "'", HttpStatus.ACCEPTED, 202);
   }
 
   public User search(String username) {
