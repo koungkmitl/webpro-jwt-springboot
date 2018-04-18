@@ -2,10 +2,14 @@ package murraco.service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import murraco.dto.UserDTO;
+import murraco.dto.UserResponse;
+import murraco.dto.UserSignIn;
 import murraco.response.CustomResponse;
+import murraco.response.TokenResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -13,59 +17,78 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import murraco.exception.CustomException;
-import murraco.model.User;
+import murraco.domain.User;
 import murraco.repository.UserRepository;
 import murraco.security.JwtTokenProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
 
-  @Autowired
-  private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-  @Autowired
-  private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
-  @Autowired
-  private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-  public String signin(UserDTO userDTO) {
-    try {
-      authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
-      return jwtTokenProvider.createToken(userDTO.getUsername(), userRepository.findByUsername(userDTO.getUsername()).getRoles());
-    } catch (AuthenticationException e) {
-      throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public ResponseEntity<TokenResponse> signin(UserSignIn userSignIn) {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userSignIn.getUsername(), userSignIn.getPassword()));
+            return new ResponseEntity<TokenResponse>(new TokenResponse(jwtTokenProvider.createToken(userSignIn.getUsername(), userRepository.findByUsername(userSignIn.getUsername()).getRoles())), HttpStatus.OK);
+
+        } catch (AuthenticationException e) {
+            throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
-  }
 
-  public String signup(User user) {
-    if (!userRepository.existsByUsername(user.getUsername())) {
-      user.setPassword(passwordEncoder.encode(user.getPassword()));
-      userRepository.save(user);
-      return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
-    } else {
-      throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<CustomResponse> signup(User user) {
+        if (!userRepository.existsByUsername(user.getUsername())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return new ResponseEntity<CustomResponse>(new CustomResponse("Just created"), HttpStatus.CREATED);
+        } else {
+            throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
-  }
 
-  public CustomResponse delete(String username) {
-    userRepository.deleteByUsername(username);
-    return new CustomResponse("Successfull to delete username: '" + username + "'", HttpStatus.ACCEPTED, 202);
-  }
-
-  public User search(String username) {
-    User user = userRepository.findByUsername(username);
-    if (user == null) {
-      throw new CustomException("The user doesn't exist", HttpStatus.NOT_FOUND);
+    public ResponseEntity<CustomResponse> delete(String username) {
+        userRepository.deleteByUsername(username);
+        return new ResponseEntity<CustomResponse>(new CustomResponse("Successfull to delete username: '" + username + "'"), HttpStatus.ACCEPTED);
     }
-    return user;
-  }
 
-  public User whoami(HttpServletRequest req) {
-    return userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
-  }
+    public User search(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new CustomException("The user doesn't exist", HttpStatus.NOT_FOUND);
+        }
+        return user;
+    }
 
+    public User whoami(HttpServletRequest req) {
+        User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
+        if (user == null) {
+            throw new CustomException("Token Error", HttpStatus.BAD_REQUEST);
+        }
+        return user;
+    }
+
+    public List<UserResponse> findAllNotPassword() {
+        List<UserResponse> userResponses = new ArrayList<>();
+        List<User> user = userRepository.findAll();
+        user.forEach((users) -> {
+            userResponses.add(modelMapper.map(users, UserResponse.class));
+        });
+        return userResponses;
+    }
 }

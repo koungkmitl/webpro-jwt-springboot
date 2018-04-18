@@ -10,8 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import murraco.model.Role;
-import murraco.model.User;
+import murraco.domain.Role;
+import murraco.domain.User;
 import murraco.service.UserService;
 
 @SpringBootApplication
@@ -50,7 +50,7 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     User test = new User();
     test.setUsername("test");
     test.setPassword("test");
-    test.setEmail("testt@email.com");
+    test.setEmail("test@email.com");
     test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT, Role.ROLE_ADMIN)));
 
     userService.signup(test);
