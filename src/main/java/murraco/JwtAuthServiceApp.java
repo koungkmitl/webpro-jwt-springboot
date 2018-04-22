@@ -10,7 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import murraco.domain.Role;
+import murraco.domain_enum.Role;
 import murraco.domain.User;
 import murraco.service.UserService;
 
@@ -35,6 +35,9 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     admin.setUsername("admin");
     admin.setPassword("admin");
     admin.setEmail("admin@email.com");
+    admin.setPrefixName("nai");
+    admin.setFirstname("admin");
+    admin.setLastname("admin");
     admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
 
     userService.signup(admin);
@@ -43,6 +46,9 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     client.setUsername("client");
     client.setPassword("client");
     client.setEmail("client@email.com");
+    client.setPrefixName("nai");
+    client.setFirstname("client");
+    client.setLastname("client");
     client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
 
     userService.signup(client);
@@ -51,6 +57,9 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     test.setUsername("test");
     test.setPassword("test");
     test.setEmail("test@email.com");
+    test.setPrefixName("nai");
+    test.setFirstname("test");
+    test.setLastname("test");
     test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT, Role.ROLE_ADMIN)));
 
     userService.signup(test);

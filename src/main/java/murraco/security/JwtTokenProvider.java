@@ -23,7 +23,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import murraco.exception.CustomException;
-import murraco.domain.Role;
+import murraco.domain_enum.Role;
 
 @Component
 public class JwtTokenProvider {
