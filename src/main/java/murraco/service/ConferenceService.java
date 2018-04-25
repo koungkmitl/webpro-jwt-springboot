@@ -1,24 +1,22 @@
 package murraco.service;
 
-import murraco.domain.Conference;
 import murraco.domain.Student;
-import murraco.dto.ConferenceDto;
-import murraco.dto.TestDto;
-import murraco.repository.ConferenceRepository;
 import murraco.repository.StudentRepository;
 import murraco.repository.TeacherRepository;
+import murraco.repository.UserRepository;
 import murraco.response.CustomResponse;
+import murraco.security.JwtTokenProvider;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class ConferenceService {
-
-    @Autowired
-    private ConferenceRepository conferenceRepository;
 
     @Autowired
     private TeacherRepository teacherRepository;
@@ -29,10 +27,26 @@ public class ConferenceService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public Student add(Student student) {
-        studentRepository.save(student);
-        return student;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private TokenService tokenService;
+
+    public  ResponseEntity<CustomResponse> listConferenceStudent(HttpServletRequest req) {
+//        int userId = tokenService.getUserId(req);
+//        List<Student> allByUserId = studentRepository.findAllByUserId(userId);
     }
+
+    public ResponseEntity<CustomResponse> addConferenceStudent(Student student) {
+        studentRepository.save(student);
+        return new ResponseEntity<CustomResponse>(new CustomResponse("Just create"), HttpStatus.CREATED);
+    }
+
+
 
     //return conference
 

@@ -6,11 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(
-        discriminatorType = DiscriminatorType.INTEGER,
-        name = "quality_conference_id",
-        columnDefinition = "TINYINT(1)"
-)
+@DiscriminatorColumn(name = "quality_conference_type")
 public class QualityConference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +19,4 @@ public class QualityConference {
     @JoinColumn(name = "conference_id")
     private Conference conference;
 
-//    @OneToOne(mappedBy = "qualityConference")
-//    private Scopus scopus;
-
-//    @OneToOne(mappedBy = "qualityConference")
-//    private Ccr ccr;
-
-//    @OneToOne(mappedBy = "qualityConference")
-//    private Cif cif;
-//
-//    @OneToOne(mappedBy = "qualityConference")
-//    private Sjr sjr;
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue(value = "student")
 public class Student extends Conference {
-
     private String testStudent;
     private boolean schoarship;
     private float costTravel;
@@ -23,6 +22,7 @@ public class Student extends Conference {
     private String phoneNumber;
     private String degree;
     private String teacherEmail;
+
     @Enumerated(EnumType.STRING)
     private State state;
 

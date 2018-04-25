@@ -11,11 +11,6 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "conference_type_doc")
-//@DiscriminatorColumn(
-//        discriminatorType = DiscriminatorType.INTEGER,
-//        name = "conference_type_doc_id",
-//        columnDefinition = "TINYINT(1)"
-//)
 public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

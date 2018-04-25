@@ -1,13 +1,13 @@
 package murraco.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@DiscriminatorValue(value = "sjr")
 public class Sjr extends QualityConference {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int group;
+    private int hIndexYear;
+    private int hIndex;
+    private int sjrYear;
+    private float sjrScore;
 }
