@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@DiscriminatorValue(value = "teacher")
 public class Teacher extends Conference {
 
     @Id

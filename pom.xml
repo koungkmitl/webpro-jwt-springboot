@@ -96,4 +96,10 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+
+		</profile>
+	</profiles>
+
 </project>

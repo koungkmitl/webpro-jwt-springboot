@@ -3,6 +3,9 @@ package murraco;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import jdk.nashorn.internal.parser.Token;
+import murraco.dto.UserSignIn;
+import murraco.response.TokenResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import murraco.domain_enum.Role;
 import murraco.domain.User;
 import murraco.service.UserService;
+import org.springframework.http.ResponseEntity;
 
 @SpringBootApplication
 public class JwtAuthServiceApp implements CommandLineRunner {
@@ -63,6 +67,10 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT, Role.ROLE_ADMIN)));
 
     userService.signup(test);
+
+    UserSignIn userSignIn = new UserSignIn("admin", "admin");
+    ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
+    System.out.println(tokenResponse.getBody().getToken());
   }
 
 }
