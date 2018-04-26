@@ -3,6 +3,7 @@ package murraco.domain_enum;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum State implements GrantedAuthority {
+    INIT,
     HR_P, HR_F,
     RESEARCH_P, RESEARCH_F,
     FINANCE_P, FINANCE_F,

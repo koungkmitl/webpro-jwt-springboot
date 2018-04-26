@@ -1,16 +1,13 @@
 package murraco.domain;
 
-import murraco.domain_enum.State;
-import murraco.domain_enum.TypeDoc;
-
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
 @DiscriminatorValue(value = "teacher")
 public class Teacher extends Conference {
 
-    private String testTeacher;
     private int qualityOfConferenceId;
     private Date sentResearchDate;
     private Date dateResultConsider;
@@ -28,18 +25,6 @@ public class Teacher extends Conference {
     private float costOfTravelInDomestic;
     private float sumAllCost;
     private Date date;
-
-    @Enumerated(EnumType.STRING)
-    private State state;
-
-    public String getTestTeacher() {
-        return testTeacher;
-    }
-
-    public Teacher setTestTeacher(String testTeacher) {
-        this.testTeacher = testTeacher;
-        return this;
-    }
 
     public int getQualityOfConferenceId() {
         return qualityOfConferenceId;
@@ -191,17 +176,6 @@ public class Teacher extends Conference {
 
     public Teacher setDate(Date date) {
         this.date = date;
-        return this;
-    }
-
-    @Override
-    public State getState() {
-        return state;
-    }
-
-    @Override
-    public Teacher setState(State state) {
-        this.state = state;
         return this;
     }
 }

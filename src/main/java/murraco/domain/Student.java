@@ -1,14 +1,12 @@
 package murraco.domain;
 
-import murraco.domain_enum.State;
-
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue(value = "student")
 public class Student extends Conference {
-    private String testStudent;
-    private boolean schoarship;
+
+    private boolean scholarship;
     private float costTravel;
     private String studentUserEmail;
     private String number;
@@ -23,27 +21,15 @@ public class Student extends Conference {
     private String degree;
     private String teacherEmail;
 
-    @Enumerated(EnumType.STRING)
-    private State state;
-
     @OneToOne
     private StudentCourse studentCourse;
 
-    public String getTestStudent() {
-        return testStudent;
+    public boolean isScholarship() {
+        return scholarship;
     }
 
-    public Student setTestStudent(String testStudent) {
-        this.testStudent = testStudent;
-        return this;
-    }
-
-    public boolean isSchoarship() {
-        return schoarship;
-    }
-
-    public Student setSchoarship(boolean schoarship) {
-        this.schoarship = schoarship;
+    public Student setScholarship(boolean scholarship) {
+        this.scholarship = scholarship;
         return this;
     }
 
@@ -161,17 +147,6 @@ public class Student extends Conference {
 
     public Student setTeacherEmail(String teacherEmail) {
         this.teacherEmail = teacherEmail;
-        return this;
-    }
-
-    @Override
-    public State getState() {
-        return state;
-    }
-
-    @Override
-    public Student setState(State state) {
-        this.state = state;
         return this;
     }
 

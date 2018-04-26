@@ -1,7 +1,10 @@
 package murraco.domain;
 
 import murraco.domain_enum.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
@@ -99,27 +102,5 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-
-    public List<Conference> getConferences() {
-        return conferences;
-    }
-
-    public void setConferences(List<Conference> conferences) {
-        this.conferences = conferences;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Conference> conferences;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Comment> comments;
 
 }

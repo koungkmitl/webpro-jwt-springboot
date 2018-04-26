@@ -1,7 +1,6 @@
 package murraco.domain;
 
 import murraco.domain_enum.State;
-import murraco.domain_enum.TypeDoc;
 import murraco.domain_enum.TypePublic;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "conference_type_doc")
+@DiscriminatorColumn(name = "conference_type_doc") //student, teacher
 public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +29,6 @@ public class Conference {
     private float costRegister;
     private float maximumMoneySupport;
     private int levelOfConference;
-    @Enumerated(EnumType.STRING)
-    private TypeDoc typeDocs;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -169,15 +166,6 @@ public class Conference {
 
     public Conference setLevelOfConference(int levelOfConference) {
         this.levelOfConference = levelOfConference;
-        return this;
-    }
-
-    public TypeDoc getTypeDocs() {
-        return typeDocs;
-    }
-
-    public Conference setTypeDocs(TypeDoc typeDocs) {
-        this.typeDocs = typeDocs;
         return this;
     }
 

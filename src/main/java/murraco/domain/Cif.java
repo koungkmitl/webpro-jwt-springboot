@@ -5,34 +5,24 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue(value = "cif")
 public class Cif extends QualityConference {
-    private int hIndex;
-    private int citationTotal;
-    private int group;
+    private Integer hIndex;
+    private Integer citationTotal;
 
-    public int gethIndex() {
+    public Integer gethIndex() {
         return hIndex;
     }
 
-    public Cif sethIndex(int hIndex) {
+    public Cif sethIndex(Integer hIndex) {
         this.hIndex = hIndex;
         return this;
     }
 
-    public int getCitationTotal() {
+    public Integer getCitationTotal() {
         return citationTotal;
     }
 
-    public Cif setCitationTotal(int citationTotal) {
+    public Cif setCitationTotal(Integer citationTotal) {
         this.citationTotal = citationTotal;
-        return this;
-    }
-
-    public int getGroup() {
-        return group;
-    }
-
-    public Cif setGroup(int group) {
-        this.group = group;
         return this;
     }
 }

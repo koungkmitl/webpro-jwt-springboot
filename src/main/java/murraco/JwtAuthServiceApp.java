@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import jdk.nashorn.internal.parser.Token;
+import murraco.domain.StudentCourse;
 import murraco.dto.UserSignIn;
+import murraco.repository.StudentCourseRepository;
 import murraco.response.TokenResponse;
+import murraco.service.StudentCourseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +26,9 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 
   @Autowired
   UserService userService;
+
+  @Autowired
+  StudentCourseService studentCourseService;
 
   public static void main(String[] args) {
     SpringApplication.run(JwtAuthServiceApp.class, args);
@@ -71,6 +77,13 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     UserSignIn userSignIn = new UserSignIn("admin", "admin");
     ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
     System.out.println(tokenResponse.getBody().getToken());
+
+    // Token
+
+    // StudentCourse
+    studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
+    studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
+
   }
 
 }

@@ -11,7 +11,13 @@ public class StudentCourse {
     private String major;
     private String department;
 
-    @OneToOne(targetEntity = Student.class)
+    public StudentCourse(String course, String major, String department) {
+        this.course = course;
+        this.major = major;
+        this.department = department;
+    }
+
+    @OneToOne(mappedBy = "studentCourse")
     private Student student;
 
     public Integer getId() {
@@ -49,13 +55,13 @@ public class StudentCourse {
         this.department = department;
         return this;
     }
-//
-//    public Student getStudent() {
-//        return student;
-//    }
-//
-//    public StudentCourse setStudent(Student student) {
-//        this.student = student;
-//        return this;
-//    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public StudentCourse setStudent(Student student) {
+        this.student = student;
+        return this;
+    }
 }
