@@ -28,4 +28,8 @@ public class TokenService {
         User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
         return user.getRoles();
     }
+
+    public String getUsername(HttpServletRequest req) {
+        return jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req));
+    }
 }

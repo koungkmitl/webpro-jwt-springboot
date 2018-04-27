@@ -59,7 +59,7 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     client.setPrefixName("nai");
     client.setFirstname("client");
     client.setLastname("client");
-    client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT)));
+    client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
 
     userService.signup(client);
 
@@ -70,17 +70,23 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     test.setPrefixName("nai");
     test.setFirstname("test");
     test.setLastname("test");
-    test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_CLIENT, Role.ROLE_ADMIN)));
+    test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT, Role.ROLE_ADMIN)));
 
     userService.signup(test);
+
 
     UserSignIn userSignIn = new UserSignIn("admin", "admin");
     ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
     System.out.println(tokenResponse.getBody().getToken());
 
+    UserSignIn suserSignIn = new UserSignIn("client", "client");
+    ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
+    System.out.println(stokenResponse.getBody().getToken());
+
     // Token
 
     // StudentCourse
+    studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
     studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
     studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
 

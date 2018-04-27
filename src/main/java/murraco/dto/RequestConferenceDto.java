@@ -33,7 +33,7 @@ public class RequestConferenceDto {
     private Date startDate;
     private Date endDate;
     private String place;
-    private Date starTravelDate;
+    private Date startTravelDate;
     private Date endTravelDate;
     private float costAbode;
     private float costRegister;
@@ -263,12 +263,12 @@ public class RequestConferenceDto {
         return this;
     }
 
-    public Date getStarTravelDate() {
-        return starTravelDate;
+    public Date getStartTravelDate() {
+        return startTravelDate;
     }
 
-    public RequestConferenceDto setStarTravelDate(Date starTravelDate) {
-        this.starTravelDate = starTravelDate;
+    public RequestConferenceDto setStartTravelDate(Date startTravelDate) {
+        this.startTravelDate = startTravelDate;
         return this;
     }
 

@@ -21,9 +21,5 @@ public class StudentBootstrapper implements Bootstrapper {
                 new Student().setDistrict("asasasd").setProvince("bangkok")
         );
 
-//        if (studentRepository.count() == 0) {
-//            studentRepository.save(students);
-//        }
-
     }
 }
