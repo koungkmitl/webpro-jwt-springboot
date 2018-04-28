@@ -5,6 +5,7 @@ import murraco.domain_enum.TypePublic;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -52,161 +53,143 @@ public class Conference {
         return id;
     }
 
-    public Conference setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public State getState() {
         return state;
     }
 
-    public Conference setState(State state) {
+    public void setState(State state) {
         this.state = state;
-        return this;
     }
 
     public String getResearchName() {
         return researchName;
     }
 
-    public Conference setResearchName(String researchName) {
+    public void setResearchName(String researchName) {
         this.researchName = researchName;
-        return this;
     }
 
     public TypePublic getTypePublics() {
         return typePublics;
     }
 
-    public Conference setTypePublics(TypePublic typePublics) {
+    public void setTypePublics(TypePublic typePublics) {
         this.typePublics = typePublics;
-        return this;
     }
 
     public String getConferenceName() {
         return conferenceName;
     }
 
-    public Conference setConferenceName(String conferenceName) {
+    public void setConferenceName(String conferenceName) {
         this.conferenceName = conferenceName;
-        return this;
     }
 
     public Date getStartDate() {
         return startDate;
     }
 
-    public Conference setStartDate(Date startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
-        return this;
     }
 
     public Date getEndDate() {
         return endDate;
     }
 
-    public Conference setEndDate(Date endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
-        return this;
     }
 
     public String getPlace() {
         return place;
     }
 
-    public Conference setPlace(String place) {
+    public void setPlace(String place) {
         this.place = place;
-        return this;
     }
 
     public Date getStartTravelDate() {
         return startTravelDate;
     }
 
-    public Conference setStarTravelDate(Date starTravelDate) {
-        this.startTravelDate = starTravelDate;
-        return this;
+    public void setStartTravelDate(Date startTravelDate) {
+        this.startTravelDate = startTravelDate;
     }
 
     public Date getEndTravelDate() {
         return endTravelDate;
     }
 
-    public Conference setEndTravelDate(Date endTravelDate) {
+    public void setEndTravelDate(Date endTravelDate) {
         this.endTravelDate = endTravelDate;
-        return this;
     }
 
     public float getCostAbode() {
         return costAbode;
     }
 
-    public Conference setCostAbode(float costAbode) {
+    public void setCostAbode(float costAbode) {
         this.costAbode = costAbode;
-        return this;
     }
 
     public float getCostRegister() {
         return costRegister;
     }
 
-    public Conference setCostRegister(float costRegister) {
+    public void setCostRegister(float costRegister) {
         this.costRegister = costRegister;
-        return this;
     }
 
     public float getMaximumMoneySupport() {
         return maximumMoneySupport;
     }
 
-    public Conference setMaximumMoneySupport(float maximumMoneySupport) {
+    public void setMaximumMoneySupport(float maximumMoneySupport) {
         this.maximumMoneySupport = maximumMoneySupport;
-        return this;
     }
 
     public int getLevelOfConference() {
         return levelOfConference;
     }
 
-    public Conference setLevelOfConference(int levelOfConference) {
+    public void setLevelOfConference(int levelOfConference) {
         this.levelOfConference = levelOfConference;
-        return this;
     }
 
     public User getUser() {
         return user;
     }
 
-    public Conference setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
-        return this;
     }
 
     public List<Comment> getComments() {
         return comments;
     }
 
-    public Conference setComments(List<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
-        return this;
     }
 
     public List<Image> getImages() {
         return images;
     }
 
-    public Conference setImages(List<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
-        return this;
     }
 
     public QualityConference getQualityConference() {
         return qualityConference;
     }
 
-    public Conference setQualityConference(QualityConference qualityConference) {
+    public void setQualityConference(QualityConference qualityConference) {
         this.qualityConference = qualityConference;
-        return this;
     }
 }

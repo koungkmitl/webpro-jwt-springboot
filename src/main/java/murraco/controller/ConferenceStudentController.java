@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,8 +49,8 @@ public class ConferenceStudentController {
     private ConferenceRepository conferenceRepository;
 
     @PostMapping(value = "/add")
-    public Conference add(@RequestBody Conference conference){
-
+    public Conference add(@RequestBody Conference conference, HttpServletRequest req){
+        conferenceRepository.save(conference);
         return conference;
     }
 
