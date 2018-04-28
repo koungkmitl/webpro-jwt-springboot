@@ -18,7 +18,7 @@ public class ConferenceController {
     private ConferenceService conferenceService;
 
     @GetMapping()
-    public ResponseEntity<ConferenceResponse> listALl(HttpServletRequest req) {
+    public ResponseEntity<ConferenceResponse> listAll(HttpServletRequest req) {
         return conferenceService.listAllConference(req);
     }
 }

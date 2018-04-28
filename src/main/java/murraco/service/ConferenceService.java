@@ -81,9 +81,11 @@ public class ConferenceService {
 
     public ResponseEntity<ConferenceResponse> listAllConference(HttpServletRequest req) {
         int userId = tokenService.getUserId(req);
-        int amount = conferenceRepository.countByUserId(userId);
-        List<Conference> conferenceList = conferenceRepository.findByUserId(userId);
+        int amount = conferenceRepository.countByUser(userId);
+        List<Conference> conferenceList = conferenceRepository.findByUser(userId);
         System.out.println(conferenceList);
         return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
     }
+
+
 }
