@@ -33,10 +33,10 @@ public class JwtTokenProvider {
      * microservices environment, this key would be kept on a config-server.
      */
     @Value("${security.jwt.token.secret-key:secret-key}")
-    private String secretKey;
+    private String secretKey = "";
 
     @Value("${security.jwt.token.expire-length:3600000}")
-    private long validityInMilliseconds = 360000000; // 1h 3600000 // 10d 864000000
+    private long validityInMilliseconds = 86000000; // 1h 3600000 // 10d 864000000
 
     @Autowired
     private MyUserDetails myUserDetails;
