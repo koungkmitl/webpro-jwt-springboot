@@ -1,25 +1,22 @@
 package murraco;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import jdk.nashorn.internal.parser.Token;
 import murraco.domain.StudentCourse;
+import murraco.domain.User;
+import murraco.domain_enum.Role;
 import murraco.dto.UserSignIn;
-import murraco.repository.StudentCourseRepository;
 import murraco.response.TokenResponse;
 import murraco.service.StudentCourseService;
+import murraco.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import murraco.domain_enum.Role;
-import murraco.domain.User;
-import murraco.service.UserService;
 import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class JwtAuthServiceApp implements CommandLineRunner {

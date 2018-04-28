@@ -34,7 +34,7 @@ UserController:
   me: Returns current user's data
 
 
-debug: true
+#debug: true
 
 
 server:
