@@ -4,7 +4,7 @@ import murraco.domain.StudentCourse;
 import murraco.domain.User;
 import murraco.domain_enum.Role;
 import murraco.dto.UserSignIn;
-import murraco.response.TokenResponse;
+import murraco.dto.TokenResponse;
 import murraco.service.StudentCourseService;
 import murraco.service.UserService;
 import org.modelmapper.ModelMapper;

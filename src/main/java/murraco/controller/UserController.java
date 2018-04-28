@@ -3,9 +3,9 @@ package murraco.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import murraco.dto.UserSignIn;
-import murraco.response.CustomResponse;
-import murraco.response.RoleResponse;
-import murraco.response.TokenResponse;
+import murraco.dto.CustomResponse;
+import murraco.dto.RoleResponse;
+import murraco.dto.TokenResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +50,7 @@ public class UserController {
         return userService.delete(username);
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping()
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<UserResponse> findAllNotPassword() {
         return userService.findAllNotPassword();

@@ -13,7 +13,7 @@ import java.util.List;
 public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @Enumerated(EnumType.STRING)
     private State state;
     private String researchName;
@@ -43,11 +43,11 @@ public class Conference {
     @OneToOne(mappedBy = "conference", cascade = CascadeType.ALL)
     private QualityConference qualityConference;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public Conference setId(Long id) {
+    public Conference setId(int id) {
         this.id = id;
         return this;
     }

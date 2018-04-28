@@ -1,7 +1,7 @@
 package murraco.controller;
 
 import murraco.domain.StudentCourse;
-import murraco.response.CustomResponse;
+import murraco.dto.CustomResponse;
 import murraco.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

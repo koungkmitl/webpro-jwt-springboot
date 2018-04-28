@@ -9,7 +9,7 @@ import murraco.repository.CcrRepository;
 import murraco.repository.CifRepository;
 import murraco.repository.ScopusRepository;
 import murraco.repository.SjrRepository;
-import murraco.response.CustomResponse;
+import murraco.dto.CustomResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

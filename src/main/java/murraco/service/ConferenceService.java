@@ -1,21 +1,22 @@
 package murraco.service;
 
 import murraco.domain.Conference;
+import murraco.dto.ConferenceResponse;
 import murraco.dto.RequestConferenceDto;
 import murraco.repository.ConferenceRepository;
 import murraco.repository.StudentRepository;
 import murraco.repository.TeacherRepository;
 import murraco.repository.UserRepository;
-import murraco.response.CustomResponse;
-import murraco.security.JwtTokenProvider;
+import murraco.dto.CustomResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 @Service
 public class ConferenceService {
@@ -78,8 +79,11 @@ public class ConferenceService {
     }
 
 
-    public void listAllConference(HttpServletRequest req) {
-        long userId = tokenService.getUserId(req);
-        int amount = conferenceRepository.countByUserId()
+    public ResponseEntity<ConferenceResponse> listAllConference(HttpServletRequest req) {
+        int userId = tokenService.getUserId(req);
+        int amount = conferenceRepository.countByUserId(userId);
+        List<Conference> conferenceList = conferenceRepository.findByUserId(userId);
+        System.out.println(conferenceList);
+        return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
     }
 }
