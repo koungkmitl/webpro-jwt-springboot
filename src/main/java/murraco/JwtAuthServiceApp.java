@@ -76,6 +76,7 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
     System.out.println(tokenResponse.getBody().getToken());
 
+
     UserSignIn suserSignIn = new UserSignIn("client", "client");
     ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
     System.out.println(stokenResponse.getBody().getToken());
