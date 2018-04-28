@@ -19,16 +19,6 @@ import java.util.List;
 @RequestMapping(value = "/studentcourse")
 public class StudentCourseController {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
-            }
-        };
-    }
-
     @Autowired
     private StudentCourseService studentCourseService;
 

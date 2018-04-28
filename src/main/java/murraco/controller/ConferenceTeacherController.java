@@ -18,16 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/conference/teacher")
 public class ConferenceTeacherController {
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
-            }
-        };
-    }
-
     @Autowired
     private ConferenceTeacherService conferenceTeacherService;
 
