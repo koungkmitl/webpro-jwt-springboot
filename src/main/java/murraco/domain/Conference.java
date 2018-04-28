@@ -13,7 +13,7 @@ import java.util.List;
 public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Enumerated(EnumType.STRING)
     private State state;
     private String researchName;
@@ -23,7 +23,7 @@ public class Conference {
     private Date startDate;
     private Date endDate;
     private String place;
-    private Date starTravelDate;
+    private Date startTravelDate;
     private Date endTravelDate;
     private float costAbode;
     private float costRegister;
@@ -43,11 +43,11 @@ public class Conference {
     @OneToOne(mappedBy = "conference", cascade = CascadeType.ALL)
     private QualityConference qualityConference;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public Conference setId(Integer id) {
+    public Conference setId(Long id) {
         this.id = id;
         return this;
     }
@@ -115,12 +115,12 @@ public class Conference {
         return this;
     }
 
-    public Date getStarTravelDate() {
-        return starTravelDate;
+    public Date getStartTravelDate() {
+        return startTravelDate;
     }
 
     public Conference setStarTravelDate(Date starTravelDate) {
-        this.starTravelDate = starTravelDate;
+        this.startTravelDate = starTravelDate;
         return this;
     }
 

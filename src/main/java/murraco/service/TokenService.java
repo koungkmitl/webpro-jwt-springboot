@@ -19,7 +19,7 @@ public class TokenService {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    public int getUserId(HttpServletRequest req) {
+    public Long getUserId(HttpServletRequest req) {
         User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
         return user.getId();
     }

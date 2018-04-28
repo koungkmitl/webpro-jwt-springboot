@@ -1,11 +1,8 @@
 package murraco.controller;
 
-import murraco.domain.*;
 import murraco.dto.RequestConferenceDto;
-import murraco.dto.StudentDto;
 import murraco.response.CustomResponse;
-import murraco.service.ConferenceStudentService;
-import murraco.service.QualityService;
+import murraco.service.ConferenceService;
 import murraco.service.TokenService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -26,32 +23,22 @@ public class ConferenceStudentController {
     private final Logger LOG = LoggerFactory.getLogger(ConferenceStudentController.class);
 
     @Autowired
-    private ConferenceStudentService conferenceStudentService;
+    private ConferenceService conferenceService;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    private QualityService qualityService;
-
-    @Autowired
     private TokenService tokenService;
 
     @PostMapping(value = "/add")
-    public ResponseEntity<CustomResponse> addConference(@RequestBody RequestConferenceDto requestConferenceDto) {
-        Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
-//        conferenceStudentService.addConferenceStudent(requestConferenceDto);
-        Student student = modelMapper.map(requestConferenceDto, Student.class);
+    public ResponseEntity<CustomResponse> addConference(@RequestBody RequestConferenceDto requestConferenceDto, HttpServletRequest req) {
+        System.out.println(tokenService.getUsername(req));
+        System.out.println(requestConferenceDto.getStartDate());
+        conferenceService.addConferenceStudent(requestConferenceDto, req);
+//        Student student = modelMapper.map(requestConferenceDto, Student.class);
 //        conferenceStudentService.addConferenceStudent();
-        if ( conference.getQualityConference().equals("cif") ){
-            qualityService.addCif(requestConferenceDto);
-        } else if ( conference.getQualityConference().equals("sjr") ){
-            qualityService.addSjr(requestConferenceDto);
-        } else if ( conference.getQualityConference().equals("scopus") ){
-            qualityService.addScopus(requestConferenceDto);
-        } else {
-            qualityService.addCcr(requestConferenceDto);
-        }
+
         return new ResponseEntity<CustomResponse>(new CustomResponse(requestConferenceDto.getStartDate().toString()), HttpStatus.CREATED);
     }
 }

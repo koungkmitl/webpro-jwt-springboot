@@ -50,7 +50,6 @@ public class UserController {
     }
 
     @GetMapping(value = "/me")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
     public UserResponse whoami(HttpServletRequest req) {
         return modelMapper.map(userService.whoami(req), UserResponse.class);
     }
