@@ -84,15 +84,10 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
     System.out.println(stokenResponse.getBody().getToken());
 
-    // Token
-
-    // StudentCourse
     studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
     studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
     studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
 
-//    DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-//    System.out.println(f.format(1860632640));
   }
 
 }

@@ -1,25 +1,17 @@
 package murraco.controller;
 
-import murraco.domain.Conference;
-import murraco.dto.RequestConferenceDto;
-import murraco.dto.CustomResponse;
-import murraco.dto.Test;
-import murraco.repository.ConferenceRepository;
-import murraco.service.ConferenceService;
-import murraco.service.TokenService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+=======
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> f50b60e8338c933be39343af240e1d105f7db12a
 
 @RestController
+<<<<<<< HEAD
 @CrossOrigin( origins = "http://161.246.38.104:3000")
 @RequestMapping("/conference")
 public class ConferenceStudentController {
@@ -56,4 +48,11 @@ public class ConferenceStudentController {
 //        return conference;
 //    }
 
+=======
+@RequestMapping("/conference/student")
+public class ConferenceStudentController {
+
+    @Autowired
+    private
+>>>>>>> f50b60e8338c933be39343af240e1d105f7db12a
 }
