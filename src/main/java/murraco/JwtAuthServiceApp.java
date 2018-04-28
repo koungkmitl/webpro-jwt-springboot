@@ -15,8 +15,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootApplication
 public class JwtAuthServiceApp implements CommandLineRunner {
@@ -88,6 +91,10 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
     studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
 
+      DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+
+    Date date = new Date(1534032000);
+    System.out.println(date);
   }
 
 }

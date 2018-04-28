@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/conference")
@@ -45,8 +48,9 @@ public class ConferenceStudentController {
     private ConferenceRepository conferenceRepository;
 
     @PostMapping(value = "/add")
-    public Test add(@RequestBody Test test) {
-        return test;
+    public Conference add(@RequestBody Conference conference){
+
+        return conference;
     }
 
 }

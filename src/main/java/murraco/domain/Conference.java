@@ -2,6 +2,7 @@ package murraco.domain;
 
 import murraco.domain_enum.State;
 import murraco.domain_enum.TypePublic;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,10 +21,14 @@ public class Conference {
     @Enumerated(EnumType.STRING)
     private TypePublic typePublics;
     private String conferenceName;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date startDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date endDate;
     private String place;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date startTravelDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date endTravelDate;
     private float costAbode;
     private float costRegister;
