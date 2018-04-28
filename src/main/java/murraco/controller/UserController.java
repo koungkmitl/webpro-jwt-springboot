@@ -50,11 +50,6 @@ public class UserController {
         return userService.delete(username);
     }
 
-//    @GetMapping(value = "/me")
-//    public UserResponse whoami(HttpServletRequest req) {
-//        return modelMapper.map(userService.whoami(req), UserResponse.class);
-//    }
-
     @GetMapping(value = "/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<UserResponse> findAllNotPassword() {

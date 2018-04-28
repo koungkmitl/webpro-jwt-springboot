@@ -79,13 +79,6 @@ public class UserService {
         return user;
     }
 
-//    public User whoami(HttpServletRequest req) {
-//        User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
-//        if (user == null) {
-//            throw new CustomException("Token Error", HttpStatus.BAD_REQUEST);
-//        }
-//        return user;
-//    }
 
     public List<UserResponse> findAllNotPassword() {
         List<UserResponse> userResponses = new ArrayList<>();
