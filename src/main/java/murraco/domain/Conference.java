@@ -16,6 +16,8 @@ public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "conference_type_doc", insertable = false, updatable = false)
+    private String conferenceTypeDoc;
     @Enumerated(EnumType.STRING)
     private State state;
     private String researchName;

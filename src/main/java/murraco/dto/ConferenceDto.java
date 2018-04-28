@@ -1,8 +1,10 @@
 package murraco.dto;
 
+import murraco.domain.User;
 import murraco.domain_enum.State;
 import murraco.domain_enum.TypePublic;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
 public class ConferenceDto {
@@ -20,7 +22,7 @@ public class ConferenceDto {
     private float costRegister;
     private float maximumMoneySupport;
     private int levelOfConference;
-    private int userId;                        // setter
+    private User user;                        // setter
 
     public State getState() {
         return state;
@@ -139,12 +141,13 @@ public class ConferenceDto {
         return this;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public ConferenceDto setUserId(int userId) {
-        this.userId = userId;
+    public ConferenceDto setUser(User user) {
+        this.user = user;
         return this;
     }
+
 }

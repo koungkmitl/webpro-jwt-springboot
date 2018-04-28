@@ -2,8 +2,10 @@ package murraco.service;
 
 import murraco.domain.Conference;
 import murraco.domain.User;
+import murraco.dto.ConferenceDto;
 import murraco.dto.CustomResponse;
 import murraco.dto.RequestConferenceDto;
+import murraco.repository.ConferenceRepository;
 import murraco.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,17 @@ public class ConferenceTeacherService {
     private TokenService tokenService;
 
     @Autowired
+    private ConferenceRepository conferenceRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public ResponseEntity<CustomResponse> add(RequestConferenceDto requestConferenceDto, HttpServletRequest req){
         User user = userRepository.findByUsername(tokenService.getUsername(req));
+
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
+        conference.setUser(user);
 
         for (Field field : conference.getClass().getDeclaredFields()) {
             field.setAccessible(true);
@@ -41,6 +49,18 @@ public class ConferenceTeacherService {
             }
             System.out.printf("%s: %s%n", name, value);
         }
+
+        try {
+            conferenceRepository.save(new ConferenceDto());
+        } catch ( Exception e ) {
+            System.out.println(e);
+        }
+
+        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<CustomResponse> list(HttpServletRequest req){
+        User user = userRepository.findByUsername(tokenService.getUsername(req));
 
         return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
     }

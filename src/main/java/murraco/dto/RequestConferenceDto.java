@@ -39,6 +39,7 @@ public class RequestConferenceDto {
     private float costRegister;
     private float maximumMoneySupport;
     private int levelOfConference;
+    private String conferenceTypeDoc;
     private int userId;                        // setter
 
     //quality conference
@@ -414,6 +415,14 @@ public class RequestConferenceDto {
     public RequestConferenceDto setSjrScore(Float sjrScore) {
         this.sjrScore = sjrScore;
         return this;
+    }
+
+    public String getConferenceTypeDoc() {
+        return conferenceTypeDoc;
+    }
+
+    public void setConferenceTypeDoc(String conferenceTypeDoc) {
+        this.conferenceTypeDoc = conferenceTypeDoc;
     }
 
 }

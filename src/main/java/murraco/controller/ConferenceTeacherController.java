@@ -26,4 +26,10 @@ public class ConferenceTeacherController {
     public ResponseEntity<CustomResponse> teacherAdd(@RequestBody RequestConferenceDto requestConferenceDto, HttpServletRequest req){
         return conferenceTeacherService.add(requestConferenceDto, req);
     }
+
+    @PostMapping("/list")
+    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<CustomResponse> teacherList(HttpServletRequest req){
+        return conferenceTeacherService.list(req);
+    }
 }
