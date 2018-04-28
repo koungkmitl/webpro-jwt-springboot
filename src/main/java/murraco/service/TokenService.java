@@ -1,5 +1,7 @@
 package murraco.service;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import murraco.domain.User;
 import murraco.domain_enum.Role;
 import murraco.exception.CustomException;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 @Service

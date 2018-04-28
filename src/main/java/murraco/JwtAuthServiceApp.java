@@ -74,6 +74,17 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 
     userService.signup(test);
 
+    User tea = new User();
+    tea.setUsername("tea");
+    tea.setPassword("tea");
+    tea.setEmail("teacher@email.com");
+    tea.setPrefixName("nai");
+    tea.setFirstname("test");
+    tea.setLastname("test");
+    tea.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_TEACHER)));
+
+    userService.signup(tea);
+
 
     UserSignIn userSignIn = new UserSignIn("admin", "admin");
     ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
@@ -83,6 +94,10 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     UserSignIn suserSignIn = new UserSignIn("client", "client");
     ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
     System.out.println(stokenResponse.getBody().getToken());
+
+    UserSignIn teaSignIn = new UserSignIn("tea", "tea");
+    ResponseEntity<TokenResponse> astokenResponse = userService.signin(teaSignIn);
+    System.out.println(astokenResponse.getBody().getToken());
 
     studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
     studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));

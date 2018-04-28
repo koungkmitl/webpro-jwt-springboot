@@ -5,20 +5,29 @@ import murraco.dto.CustomResponse;
 import murraco.dto.StudentCourseResponse;
 import murraco.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin( origins = "http://161.246.38.104:3000")
-@RequestMapping("/studentcourse")
-=======
 @RequestMapping(value = "/studentcourse")
->>>>>>> f50b60e8338c933be39343af240e1d105f7db12a
 public class StudentCourseController {
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
+    }
 
     @Autowired
     private StudentCourseService studentCourseService;
