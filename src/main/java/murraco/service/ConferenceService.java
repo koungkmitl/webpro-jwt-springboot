@@ -30,13 +30,10 @@ public class ConferenceService {
     private ModelMapper modelMapper;
 
     @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private TokenService tokenService;
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private TokenService tokenService;
 
     @Autowired
     private UserService userService;
@@ -44,6 +41,7 @@ public class ConferenceService {
     @Autowired
     private QualityService qualityService;
 
+    @Autowired
     private ConferenceRepository conferenceRepository;
 
     public ResponseEntity<CustomResponse> addConferenceStudent(RequestConferenceDto requestConferenceDto, HttpServletRequest req) {
@@ -80,5 +78,8 @@ public class ConferenceService {
     }
 
 
-
+    public void listAllConference(HttpServletRequest req) {
+        long userId = tokenService.getUserId(req);
+        int amount = conferenceRepository.countByUserId()
+    }
 }

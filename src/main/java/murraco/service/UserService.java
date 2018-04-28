@@ -1,5 +1,6 @@
 package murraco.service;
 
+import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 
 import murraco.dto.UserResponse;
@@ -27,7 +28,6 @@ import java.util.List;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -66,11 +66,25 @@ public class UserService {
         }
     }
 
+    /**
+     * ADMIN
+     * @param username
+     * @return
+     */
     public ResponseEntity<CustomResponse> delete(String username) {
-        userRepository.deleteByUsername(username);
-        return new ResponseEntity<CustomResponse>(new CustomResponse("Successfull to delete username: '" + username + "'"), HttpStatus.ACCEPTED);
+        if (userRepository.existsByUsername(username)) {
+            userRepository.deleteByUsername(username);
+            return new ResponseEntity<CustomResponse>(new CustomResponse("Successfull to delete username: '" + username + "'"), HttpStatus.ACCEPTED);
+        } else {
+            throw new CustomException("The user doesn't exist", HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
 
+    /**
+     * ADMIN
+     * @param username
+     * @return
+     */
     public User search(String username) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
@@ -80,6 +94,10 @@ public class UserService {
     }
 
 
+    /**
+     * ADMIN
+     * @return
+     */
     public List<UserResponse> findAllNotPassword() {
         List<UserResponse> userResponses = new ArrayList<>();
         List<User> user = userRepository.findAll();
@@ -92,4 +110,5 @@ public class UserService {
     public ResponseEntity<RoleResponse> whoami(HttpServletRequest req) {
         return new ResponseEntity<RoleResponse>(new RoleResponse(tokenService.getRole(req)), HttpStatus.OK);
     }
+
 }

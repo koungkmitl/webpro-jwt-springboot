@@ -27,7 +27,7 @@ public class TokenService {
             User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
             return user.getId();
         } catch (PersistenceException e) {
-            throw new CustomException("Don't have username in database", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new CustomException("The user doesn't exist", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -36,7 +36,7 @@ public class TokenService {
             User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
             return user.getRoles();
         } catch (PersistenceException e) {
-            throw new CustomException("Don't have username in database", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new CustomException("The user doesn't exist", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -44,7 +44,7 @@ public class TokenService {
         try {
             return jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req));
         } catch (PersistenceException e) {
-            throw new CustomException("Don't have username in database", HttpStatus.UNPROCESSABLE_ENTITY);
+            throw new CustomException("The user doesn't exist", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 }
