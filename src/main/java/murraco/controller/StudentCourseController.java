@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+<<<<<<< HEAD
+@CrossOrigin( origins = "http://161.246.38.104:3000")
+@RequestMapping("/studentcourse")
+=======
 @RequestMapping(value = "/studentcourse")
+>>>>>>> f50b60e8338c933be39343af240e1d105f7db12a
 public class StudentCourseController {
 
     @Autowired

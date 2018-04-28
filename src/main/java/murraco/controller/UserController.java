@@ -19,6 +19,7 @@ import murraco.service.UserService;
 import java.util.List;
 
 @RestController
+@CrossOrigin( origins = "http://161.246.38.104:3000")
 @RequestMapping("/users")
 public class UserController {
 
