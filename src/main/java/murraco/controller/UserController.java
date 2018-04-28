@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import murraco.dto.UserSignIn;
 import murraco.response.CustomResponse;
+import murraco.response.RoleResponse;
 import murraco.response.TokenResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +50,10 @@ public class UserController {
         return userService.delete(username);
     }
 
-    @GetMapping(value = "/me")
-    public UserResponse whoami(HttpServletRequest req) {
-        return modelMapper.map(userService.whoami(req), UserResponse.class);
-    }
+//    @GetMapping(value = "/me")
+//    public UserResponse whoami(HttpServletRequest req) {
+//        return modelMapper.map(userService.whoami(req), UserResponse.class);
+//    }
 
     @GetMapping(value = "/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -60,4 +61,8 @@ public class UserController {
         return userService.findAllNotPassword();
     }
 
+    @GetMapping(value = "/me")
+    public ResponseEntity<RoleResponse> whoami(HttpServletRequest req) {
+        return userService.whoami(req);
+    }
 }

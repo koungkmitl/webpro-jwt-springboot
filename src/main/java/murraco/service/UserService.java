@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import murraco.dto.UserResponse;
 import murraco.dto.UserSignIn;
 import murraco.response.CustomResponse;
+import murraco.response.RoleResponse;
 import murraco.response.TokenResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,9 @@ public class UserService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -75,13 +79,13 @@ public class UserService {
         return user;
     }
 
-    public User whoami(HttpServletRequest req) {
-        User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
-        if (user == null) {
-            throw new CustomException("Token Error", HttpStatus.BAD_REQUEST);
-        }
-        return user;
-    }
+//    public User whoami(HttpServletRequest req) {
+//        User user = userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
+//        if (user == null) {
+//            throw new CustomException("Token Error", HttpStatus.BAD_REQUEST);
+//        }
+//        return user;
+//    }
 
     public List<UserResponse> findAllNotPassword() {
         List<UserResponse> userResponses = new ArrayList<>();
@@ -90,5 +94,9 @@ public class UserService {
             userResponses.add(modelMapper.map(users, UserResponse.class));
         });
         return userResponses;
+    }
+
+    public ResponseEntity<RoleResponse> whoami(HttpServletRequest req) {
+        return new ResponseEntity<RoleResponse>(new RoleResponse(tokenService.getRole(req)), HttpStatus.OK);
     }
 }
