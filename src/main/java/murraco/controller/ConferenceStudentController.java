@@ -11,10 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
@@ -23,11 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
+@CrossOrigin( origins = "http://161.246.38.104:3000")
 @RequestMapping("/conference")
 public class ConferenceStudentController {
 
-//    @Autowired
-//    private ConferenceService conferenceService;
+    @Autowired
+    private ConferenceService conferenceService;
 //
 //    @Autowired
 //    private ModelMapper modelMapper;
@@ -49,9 +47,13 @@ public class ConferenceStudentController {
     private ConferenceRepository conferenceRepository;
 
     @PostMapping(value = "/add")
-    public Conference add(@RequestBody Conference conference, HttpServletRequest req){
-        conferenceRepository.save(conference);
-        return conference;
+    public ResponseEntity<CustomResponse> addConference(@RequestBody RequestConferenceDto requestConferenceDto, HttpServletRequest req) {
+        conferenceService.addConferenceStudent(requestConferenceDto, req);
+        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.OK);
     }
+//    public Conference add(@RequestBody Conference conference, HttpServletRequest req){
+//        conferenceRepository.save(conference);
+//        return conference;
+//    }
 
 }

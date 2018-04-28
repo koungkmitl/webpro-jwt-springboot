@@ -1,6 +1,7 @@
 package murraco.service;
 
 import murraco.domain.Conference;
+import murraco.domain.User;
 import murraco.dto.ConferenceResponse;
 import murraco.dto.RequestConferenceDto;
 import murraco.repository.ConferenceRepository;
@@ -51,13 +52,16 @@ public class ConferenceService {
 
             modelMapper.getConfiguration().setAmbiguityIgnored(true);
             Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
-            conference.setUser(userService.search(tokenService.getUsername(req)));
+            conference.setUser(userRepository.findByUsername(tokenService.getUsername(req)));
+
             System.out.println(conference.getUser().getUsername());
             System.out.println(conference.getId());
             System.out.println(conference.getState());
             System.out.println(requestConferenceDto.getConferenceId());
             System.out.println(requestConferenceDto.getUserId());
+
             conferenceRepository.save(conference);
+
             System.out.println(conference.getId());
         } catch ( Exception e ) {
             System.out.println(e);
@@ -79,13 +83,14 @@ public class ConferenceService {
     }
 
 
-    public ResponseEntity<ConferenceResponse> listAllConference(HttpServletRequest req) {
-        int userId = tokenService.getUserId(req);
-        int amount = conferenceRepository.countByUser(userId);
-        List<Conference> conferenceList = conferenceRepository.findByUser(userId);
-        System.out.println(conferenceList);
-        return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
-    }
+//    public ResponseEntity<CustomResponse> listAllConference(HttpServletRequest req) {
+//        String userName = tokenService.getUsername(req);
+//        User user = userRepository.findByUsername(userName);
+//        int amount = conferenceRepository.countByUser(user);
+//        List<Conference> conferenceList = conferenceRepository.findByUser(userId);
+//        System.out.println(conferenceList);
+//        return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
+//    }
 
 
 }
