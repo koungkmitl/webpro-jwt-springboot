@@ -11,57 +11,55 @@ public class StudentCourse {
     private String major;
     private String department;
 
+    @OneToOne(mappedBy = "studentCourse")
+    private Student student;
+
+    public StudentCourse() {
+    }
+
     public StudentCourse(String course, String major, String department) {
         this.course = course;
         this.major = major;
         this.department = department;
     }
 
-    @OneToOne(mappedBy = "studentCourse")
-    private Student student;
-
     public Integer getId() {
         return id;
     }
 
-    public StudentCourse setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
-        return this;
     }
 
     public String getCourse() {
         return course;
     }
 
-    public StudentCourse setCourse(String course) {
+    public void setCourse(String course) {
         this.course = course;
-        return this;
     }
 
     public String getMajor() {
         return major;
     }
 
-    public StudentCourse setMajor(String major) {
+    public void setMajor(String major) {
         this.major = major;
-        return this;
     }
 
     public String getDepartment() {
         return department;
     }
 
-    public StudentCourse setDepartment(String department) {
+    public void setDepartment(String department) {
         this.department = department;
-        return this;
     }
 
     public Student getStudent() {
         return student;
     }
 
-    public StudentCourse setStudent(Student student) {
+    public void setStudent(Student student) {
         this.student = student;
-        return this;
     }
 }

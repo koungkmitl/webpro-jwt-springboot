@@ -90,7 +90,8 @@ public class JwtAuthServiceApp implements CommandLineRunner {
     studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
     studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
     studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
-
+//    Date date = new Date();
+//    System.out.println(date);
 //    DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 //    System.out.println(f.format(1860632640));
   }

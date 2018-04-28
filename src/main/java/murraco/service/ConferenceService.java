@@ -3,6 +3,7 @@ package murraco.service;
 import murraco.domain.Conference;
 import murraco.dto.ConferenceResponse;
 import murraco.dto.RequestConferenceDto;
+import murraco.exception.CustomException;
 import murraco.repository.ConferenceRepository;
 import murraco.repository.StudentRepository;
 import murraco.repository.TeacherRepository;
@@ -14,8 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,23 +48,23 @@ public class ConferenceService {
     @Autowired
     private ConferenceRepository conferenceRepository;
 
-    public ResponseEntity<CustomResponse> addConferenceStudent(RequestConferenceDto requestConferenceDto, HttpServletRequest req) {
-//        Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
-        try {
+//    public ResponseEntity<CustomResponse> addConferenceStudent(RequestConferenceDto requestConferenceDto, HttpServletRequest req) {
+////        Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
+//        try {
 
-            modelMapper.getConfiguration().setAmbiguityIgnored(true);
-            Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
-            conference.setUser(userService.search(tokenService.getUsername(req)));
-            System.out.println(conference.getUser().getUsername());
-            System.out.println(conference.getId());
-            System.out.println(conference.getState());
-            System.out.println(requestConferenceDto.getConferenceId());
-            System.out.println(requestConferenceDto.getUserId());
-            conferenceRepository.save(conference);
-            System.out.println(conference.getId());
-        } catch ( Exception e ) {
-            System.out.println(e);
-        }
+//            modelMapper.getConfiguration().setAmbiguityIgnored(true);
+//            Conference conference = modelMapper.map(requestConferenceDto, Conference.class);
+//            conference.setUser(userService.search(tokenService.getUsername(req)));
+//            System.out.println(conference.getUser().getUsername());
+//            System.out.println(conference.getId());
+//            System.out.println(conference.getState());
+//            System.out.println(requestConferenceDto.getConferenceId());
+//            System.out.println(requestConferenceDto.getUserId());
+//            conferenceRepository.save(conference);
+//            System.out.println(conference.getId());
+//        } catch ( Exception e ) {
+//            System.out.println(e);
+//        }
 //        System.out.println(tokenService.getUsername(req));
 //        conference.setUser(userService.search(tokenService.getUsername(req)));
 //        System.out.println(conference.getUser());
@@ -75,17 +78,16 @@ public class ConferenceService {
 //            qualityService.addCcr(requestConferenceDto);
 //        }
 //        conferenceRepository.save(conference);
-        return new ResponseEntity<CustomResponse>(new CustomResponse("Just create"), HttpStatus.CREATED);
-    }
+//        return new ResponseEntity<CustomResponse>(new CustomResponse("Just create"), HttpStatus.CREATED);
+//    }
 
 
-    public ResponseEntity<ConferenceResponse> listAllConference(HttpServletRequest req) {
-        int userId = tokenService.getUserId(req);
-        int amount = conferenceRepository.countByUser(userId);
-        List<Conference> conferenceList = conferenceRepository.findByUser(userId);
-        System.out.println(conferenceList);
-        return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
-    }
-
+//    public ResponseEntity<ConferenceResponse> listAllConference(HttpServletRequest req) {
+//        int userId = tokenService.getUserId(req);
+//        int amount = conferenceRepository.countByUser(userId);
+//        List<Conference> conferenceList = conferenceRepository.findByUser(userId);
+//        System.out.println(conferenceList);
+//        return new ResponseEntity<ConferenceResponse>(new ConferenceResponse(conferenceList, amount), HttpStatus.OK);
+//    }
 
 }

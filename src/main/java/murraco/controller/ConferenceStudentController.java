@@ -3,7 +3,6 @@ package murraco.controller;
 import murraco.domain.Conference;
 import murraco.dto.RequestConferenceDto;
 import murraco.dto.CustomResponse;
-import murraco.dto.Test;
 import murraco.repository.ConferenceRepository;
 import murraco.service.ConferenceService;
 import murraco.service.TokenService;
@@ -23,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/conference")
+@RequestMapping("/conference2")
 public class ConferenceStudentController {
 
 //    @Autowired
@@ -45,13 +44,13 @@ public class ConferenceStudentController {
 //
 //        return new ResponseEntity<CustomResponse>(new CustomResponse(requestConferenceDto.getStartDate().toString()), HttpStatus.CREATED);
 //    }
-    @Autowired
-    private ConferenceRepository conferenceRepository;
-
-    @PostMapping(value = "/add")
-    public Conference add(@RequestBody Conference conference, HttpServletRequest req){
-        conferenceRepository.save(conference);
-        return conference;
-    }
+//    @Autowired
+//    private ConferenceRepository conferenceRepository;
+//
+//    @PostMapping(value = "/add")
+//    public Conference add(@RequestBody Conference conference, HttpServletRequest req){
+//        conferenceRepository.save(conference);
+//        return conference;
+//    }
 
 }

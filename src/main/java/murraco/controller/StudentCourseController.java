@@ -2,6 +2,7 @@ package murraco.controller;
 
 import murraco.domain.StudentCourse;
 import murraco.dto.CustomResponse;
+import murraco.dto.StudentCourseResponse;
 import murraco.service.StudentCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,24 +11,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/studentcourse")
+@RequestMapping(value = "/studentcourse")
 public class StudentCourseController {
 
     @Autowired
     private StudentCourseService studentCourseService;
 
-    @GetMapping(value = "/list")
-    public ResponseEntity<List> list() {
-        return studentCourseService.listCourse();
+    @PostMapping(value = "/add")
+    public ResponseEntity<CustomResponse> add(@RequestBody StudentCourse studentCourse) {
+        return studentCourseService.addCourse(studentCourse);
     }
 
-    @PostMapping(value = "/create")
-    public ResponseEntity<CustomResponse> addCourse(@RequestBody StudentCourse studentCourse) {
-        return studentCourseService.addCourse(studentCourse);
+    @GetMapping()
+    public ResponseEntity<List<StudentCourseResponse>> list() {
+        return studentCourseService.listCourse();
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<CustomResponse> delete(@PathVariable int id) {
         return studentCourseService.deleteCourse(id);
     }
+
 }
