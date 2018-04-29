@@ -8,7 +8,6 @@ import java.util.Date;
 @DiscriminatorValue(value = "teacher")
 public class Teacher extends Conference {
 
-    private int qualityOfConferenceId;
     private Date sentResearchDate;
     private Date dateResultConsider;
     private Date lastDateRegister;
@@ -25,15 +24,6 @@ public class Teacher extends Conference {
     private float costOfTravelInDomestic;
     private float sumAllCost;
     private Date date;
-
-    public int getQualityOfConferenceId() {
-        return qualityOfConferenceId;
-    }
-
-    public Teacher setQualityOfConferenceId(int qualityOfConferenceId) {
-        this.qualityOfConferenceId = qualityOfConferenceId;
-        return this;
-    }
 
     public Date getSentResearchDate() {
         return sentResearchDate;

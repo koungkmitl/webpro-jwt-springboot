@@ -25,6 +25,24 @@ public class RequestConferenceDto {
     private String teacherEmail;
     private int studentCourse;                // setter
 
+    //Teacher
+    private Date sentResearchDate;
+    private Date dateResultConsider;
+    private Date lastDateRegister;
+    private int numberOfJournal;
+    private float costPerJournal;
+    private String flightDestination;
+    private float flightCost;
+    private float airportVat;
+    private int abodeNight;
+    private float abodePerNight;
+    private int allowanceDay;
+    private float allowancePerDay;
+    private float costOfTravelInForeign;
+    private float costOfTravelInDomestic;
+    private float sumAllCost;
+    private Date date;
+
     //conference
     private State state;
     private String researchName;
@@ -425,4 +443,131 @@ public class RequestConferenceDto {
         this.conferenceTypeDoc = conferenceTypeDoc;
     }
 
+    public Date getSentResearchDate() {
+        return sentResearchDate;
+    }
+
+    public void setSentResearchDate(Date sentResearchDate) {
+        this.sentResearchDate = sentResearchDate;
+    }
+
+    public Date getDateResultConsider() {
+        return dateResultConsider;
+    }
+
+    public void setDateResultConsider(Date dateResultConsider) {
+        this.dateResultConsider = dateResultConsider;
+    }
+
+    public Date getLastDateRegister() {
+        return lastDateRegister;
+    }
+
+    public void setLastDateRegister(Date lastDateRegister) {
+        this.lastDateRegister = lastDateRegister;
+    }
+
+    public int getNumberOfJournal() {
+        return numberOfJournal;
+    }
+
+    public void setNumberOfJournal(int numberOfJournal) {
+        this.numberOfJournal = numberOfJournal;
+    }
+
+    public float getCostPerJournal() {
+        return costPerJournal;
+    }
+
+    public void setCostPerJournal(float costPerJournal) {
+        this.costPerJournal = costPerJournal;
+    }
+
+    public String getFlightDestination() {
+        return flightDestination;
+    }
+
+    public void setFlightDestination(String flightDestination) {
+        this.flightDestination = flightDestination;
+    }
+
+    public float getFlightCost() {
+        return flightCost;
+    }
+
+    public void setFlightCost(float flightCost) {
+        this.flightCost = flightCost;
+    }
+
+    public float getAirportVat() {
+        return airportVat;
+    }
+
+    public void setAirportVat(float airportVat) {
+        this.airportVat = airportVat;
+    }
+
+    public int getAbodeNight() {
+        return abodeNight;
+    }
+
+    public void setAbodeNight(int abodeNight) {
+        this.abodeNight = abodeNight;
+    }
+
+    public float getAbodePerNight() {
+        return abodePerNight;
+    }
+
+    public void setAbodePerNight(float abodePerNight) {
+        this.abodePerNight = abodePerNight;
+    }
+
+    public int getAllowanceDay() {
+        return allowanceDay;
+    }
+
+    public void setAllowanceDay(int allowanceDay) {
+        this.allowanceDay = allowanceDay;
+    }
+
+    public float getAllowancePerDay() {
+        return allowancePerDay;
+    }
+
+    public void setAllowancePerDay(float allowancePerDay) {
+        this.allowancePerDay = allowancePerDay;
+    }
+
+    public float getCostOfTravelInForeign() {
+        return costOfTravelInForeign;
+    }
+
+    public void setCostOfTravelInForeign(float costOfTravelInForeign) {
+        this.costOfTravelInForeign = costOfTravelInForeign;
+    }
+
+    public float getCostOfTravelInDomestic() {
+        return costOfTravelInDomestic;
+    }
+
+    public void setCostOfTravelInDomestic(float costOfTravelInDomestic) {
+        this.costOfTravelInDomestic = costOfTravelInDomestic;
+    }
+
+    public float getSumAllCost() {
+        return sumAllCost;
+    }
+
+    public void setSumAllCost(float sumAllCost) {
+        this.sumAllCost = sumAllCost;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

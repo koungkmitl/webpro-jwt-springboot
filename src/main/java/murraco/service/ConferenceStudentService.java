@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConferenceStudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+    private final ConferenceRepository conferenceRepository;
 
     @Autowired
-    private ConferenceRepository conferenceRepository;
+    public ConferenceStudentService (StudentRepository studentRepository, ConferenceRepository conferenceRepository) {
+        this.studentRepository = studentRepository;
+        this.conferenceRepository = conferenceRepository;
+    }
 }
