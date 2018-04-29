@@ -73,8 +73,13 @@ public class ConferenceTeacherService {
     public ResponseEntity<TeacherConferenceResponse> list(HttpServletRequest req){
         User user = userRepository.findByUsername(tokenService.getUsername(req));
         int amount = teacherRepository.countByUser(user);
-        List<Teacher> teachers = teacherRepository.findByUser(user);
+        List<Teacher> teachers = teacherRepository.findAllByUser(user);
 
         return new ResponseEntity<TeacherConferenceResponse>(new TeacherConferenceResponse(teachers, amount), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Teacher> test(HttpServletRequest req){
+        Teacher teacher = teacherRepository.findOneByUser(userRepository.findByUsername(tokenService.getUsername(req)));
+        return new ResponseEntity<Teacher>(teacher, HttpStatus.OK );
     }
 }

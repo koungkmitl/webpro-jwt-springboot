@@ -11,5 +11,7 @@ import java.util.List;
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
     int countByUser(User user);
 
-    List<Teacher> findByUser(User user);
+    List<Teacher> findAllByUser(User user);
+
+    Teacher findOneByUser(User user);
 }

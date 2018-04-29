@@ -1,5 +1,6 @@
 package murraco.controller;
 
+import murraco.domain.Teacher;
 import murraco.dto.CustomResponse;
 import murraco.dto.RequestConferenceDto;
 import murraco.dto.TeacherConferenceResponse;
@@ -27,5 +28,11 @@ public class ConferenceTeacherController {
 //    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<TeacherConferenceResponse> teacherList(HttpServletRequest req){
         return conferenceTeacherService.list(req);
+    }
+
+    @PostMapping("/test")
+//    @PreAuthorize("hasRole('ROLE_TEACHER')")
+    public ResponseEntity<Teacher> teachertest(HttpServletRequest req){
+        return conferenceTeacherService.test(req);
     }
 }
