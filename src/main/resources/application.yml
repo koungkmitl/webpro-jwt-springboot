@@ -1,9 +1,9 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring?useUnicode=yes&amp;characterEncoding=UTF-8"
-    username: koung
-    password: koung
+    url: jdbc:mysql://localhost:3306/support_conference?useUnicode=yes&amp;characterEncoding=UTF-8"
+    username: production
+    password: production
   tomcat:
     max-wait: 20000
     max-active: 50
