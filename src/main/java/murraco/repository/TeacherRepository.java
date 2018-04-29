@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Entity;
 
-@Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 }

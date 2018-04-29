@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface ConferenceRepository extends JpaRepository<Conference, Integer>{
 
     int countByUser(User user);
