@@ -1,5 +1,6 @@
 package murraco.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import murraco.domain_enum.TypeImage;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ public class Image {
     private TypeImage typeImage;
 
     @ManyToOne
-//    @JoinColumn(name = "conference_id")
+    @JoinColumn(name = "conference_id")
+    @JsonIgnore
     private Conference conference;
 
     public Integer getId() {

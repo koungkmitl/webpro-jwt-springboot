@@ -24,7 +24,7 @@ public class StudentCourseController {
     }
 
     @GetMapping()
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<StudentCourseResponse>> list() {
         return studentCourseService.listCourse();
     }

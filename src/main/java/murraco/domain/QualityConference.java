@@ -1,5 +1,7 @@
 package murraco.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class QualityConference {
 
     @OneToOne
     @JoinColumn(name = "conference_id")
+    @JsonIgnore
     private Conference conference;
 
     public Integer getId() {

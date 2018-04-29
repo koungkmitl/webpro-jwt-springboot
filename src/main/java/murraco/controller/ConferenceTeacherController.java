@@ -34,7 +34,7 @@ public class ConferenceTeacherController {
         return conferenceTeacherService.add(requestConferenceDto, req);
     }
 
-    @PostMapping("/list")
+    @GetMapping("/list")
 //    @PreAuthorize("hasRole('ROLE_TEACHER')")
     public ResponseEntity<TeacherConferenceResponse> teacherList(HttpServletRequest req){
         return conferenceTeacherService.list(req);

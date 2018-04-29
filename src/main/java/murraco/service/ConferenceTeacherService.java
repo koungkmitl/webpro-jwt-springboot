@@ -1,7 +1,6 @@
 package murraco.service;
 
 import murraco.domain.*;
-import murraco.dto.ConferenceDto;
 import murraco.dto.CustomResponse;
 import murraco.dto.RequestConferenceDto;
 import murraco.dto.TeacherConferenceResponse;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Field;
 import java.util.List;
 
 @Service
@@ -78,19 +76,4 @@ public class ConferenceTeacherService {
         return new ResponseEntity<TeacherConferenceResponse>(new TeacherConferenceResponse(teachers, amount), HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Conference>> test(HttpServletRequest req){
-        List<Conference> conference = null;
-        try {
-             conference = conferenceRepository.findAllByUser(userRepository.findByUsername(tokenService.getUsername(req)));
-        } catch ( Exception e){
-            System.out.println(e);
-        }
-        for (Conference c: conference) {
-            System.out.println(c.getResearchName());
-            c.setQualityConference(null);
-            c.setComments(null);
-            c.setImages(null);
-        }
-        return new ResponseEntity<List<Conference>>(conference, HttpStatus.OK );
-    }
 }

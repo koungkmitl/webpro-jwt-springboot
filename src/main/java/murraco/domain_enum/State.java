@@ -11,7 +11,8 @@ public enum State implements GrantedAuthority {
     DEAN_P, DEAN_F,
     LETTERACCEPTANCE_P, LETTERACCEPTANCE_F,
     REGISTRATION_P, REGISTRATION_F,
-    ASSOCIATEDEAN_P, ASSOCIATEDEAN_F;
+    ASSOCIATEDEAN_P, ASSOCIATEDEAN_F,
+    PASS, FUILURE;
 
     public String getAuthority() {
         return name();

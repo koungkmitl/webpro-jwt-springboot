@@ -42,13 +42,13 @@ public class Conference {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "conference", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Image> images;
 
-    @OneToOne(mappedBy = "conference", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "conference", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private QualityConference qualityConference;
 
     public int getId() {
