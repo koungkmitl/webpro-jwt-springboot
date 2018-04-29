@@ -83,7 +83,7 @@ public class TeacherImageService {
         image.setConference(teacher);
         imageRepository.save(image);
 
-        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.OK);
+        return new ResponseEntity<CustomResponse>(new CustomResponse("upload complete"), HttpStatus.OK);
     }
 
 }

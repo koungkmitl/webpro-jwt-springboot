@@ -78,7 +78,7 @@ public class ConferenceStudentService {
             scopusRepository.save(scopus);
         }
 
-        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
+        return new ResponseEntity<CustomResponse>(new CustomResponse("Create complete"), HttpStatus.CREATED);
     }
 
     public ResponseEntity<StudentConferenceResponse> list(HttpServletRequest req){

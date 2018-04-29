@@ -65,7 +65,7 @@ public class ConferenceTeacherService {
             sjrRepository.save(sjr);
         }
 
-        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
+        return new ResponseEntity<CustomResponse>(new CustomResponse("Create complete"), HttpStatus.CREATED);
     }
 
     public ResponseEntity<TeacherConferenceResponse> list(HttpServletRequest req){

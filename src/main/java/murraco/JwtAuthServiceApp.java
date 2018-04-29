@@ -24,85 +24,163 @@ import java.util.Date;
 @SpringBootApplication
 public class JwtAuthServiceApp implements CommandLineRunner {
 
-  @Autowired
-  UserService userService;
+    @Autowired
+    UserService userService;
 
-  @Autowired
-  StudentCourseService studentCourseService;
+    @Autowired
+    StudentCourseService studentCourseService;
 
-  public static void main(String[] args) {
-    SpringApplication.run(JwtAuthServiceApp.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(JwtAuthServiceApp.class, args);
+    }
 
-  @Bean
-  public ModelMapper modelMapper() {
+    @Bean
+    public ModelMapper modelMapper() {
     return new ModelMapper();
-  }
+    }
 
-  @Override
-  public void run(String... params) throws Exception {
-    User admin = new User();
-    admin.setUsername("admin");
-    admin.setPassword("admin");
-    admin.setEmail("admin@email.com");
-    admin.setPrefixName("nai");
-    admin.setFirstname("admin");
-    admin.setLastname("admin");
-    admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
+    @Override
+    public void run(String... params) throws Exception {
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setEmail("admin@email.com");
+        admin.setPrefixName("nai");
+        admin.setFirstname("admin");
+        admin.setLastname("admin");
+        admin.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_ADMIN)));
 
-    userService.signup(admin);
+        userService.signup(admin);
 
-    User client = new User();
-    client.setUsername("client");
-    client.setPassword("client");
-    client.setEmail("client@email.com");
-    client.setPrefixName("nai");
-    client.setFirstname("client");
-    client.setLastname("client");
-    client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
+        User client = new User();
+        client.setUsername("client");
+        client.setPassword("client");
+        client.setEmail("client@email.com");
+        client.setPrefixName("nai");
+        client.setFirstname("client");
+        client.setLastname("client");
+        client.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT)));
 
-    userService.signup(client);
+        userService.signup(client);
 
-    User test = new User();
-    test.setUsername("test");
-    test.setPassword("test");
-    test.setEmail("test@email.com");
-    test.setPrefixName("nai");
-    test.setFirstname("test");
-    test.setLastname("test");
-    test.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STUDENT, Role.ROLE_ADMIN)));
+        User tea = new User();
+        tea.setUsername("tea");
+        tea.setPassword("tea");
+        tea.setEmail("teacher@email.com");
+        tea.setPrefixName("nai");
+        tea.setFirstname("test");
+        tea.setLastname("test");
+        tea.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_TEACHER)));
 
-    userService.signup(test);
+        userService.signup(tea);
 
-    User tea = new User();
-    tea.setUsername("tea");
-    tea.setPassword("tea");
-    tea.setEmail("teacher@email.com");
-    tea.setPrefixName("nai");
-    tea.setFirstname("test");
-    tea.setLastname("test");
-    tea.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_TEACHER)));
+        User hr = new User();
+        hr.setUsername("hr");
+        hr.setPassword("hr");
+        hr.setEmail("hr@email.com");
+        hr.setPrefixName("nai");
+        hr.setFirstname("test");
+        hr.setLastname("test");
+        hr.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STAFF_HR)));
 
-    userService.signup(tea);
+        userService.signup(hr);
 
+        User re = new User();
+        re.setUsername("re");
+        re.setPassword("re");
+        re.setEmail("re@email.com");
+        re.setPrefixName("nai");
+        re.setFirstname("test");
+        re.setLastname("test");
+        re.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STAFF_RESEARCH)));
 
-    UserSignIn userSignIn = new UserSignIn("admin", "admin");
-    ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
-    System.out.println(tokenResponse.getBody().getToken());
+        userService.signup(re);
 
+        User fi = new User();
+        fi.setUsername("fi");
+        fi.setPassword("fi");
+        fi.setEmail("fi@email.com");
+        fi.setPrefixName("nai");
+        fi.setFirstname("test");
+        fi.setLastname("test");
+        fi.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STAFF_FINANCE)));
 
-    UserSignIn suserSignIn = new UserSignIn("client", "client");
-    ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
-    System.out.println(stokenResponse.getBody().getToken());
+        userService.signup(fi);
 
-    UserSignIn teaSignIn = new UserSignIn("tea", "tea");
-    ResponseEntity<TokenResponse> astokenResponse = userService.signin(teaSignIn);
-    System.out.println(astokenResponse.getBody().getToken());
+        User dor = new User();
+        dor.setUsername("dor");
+        dor.setPassword("dor");
+        dor.setEmail("dor@email.com");
+        dor.setPrefixName("nai");
+        dor.setFirstname("test");
+        dor.setLastname("test");
+        dor.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STAFF_DORECTOR)));
 
-    studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
-    studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
-    studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
+        userService.signup(dor);
 
-  }
+        User den = new User();
+        den.setUsername("den");
+        den.setPassword("den");
+        den.setEmail("den@email.com");
+        den.setPrefixName("nai");
+        den.setFirstname("test");
+        den.setLastname("test");
+        den.setRoles(new ArrayList<Role>(Arrays.asList(Role.ROLE_STAFF_DEAN)));
+
+        userService.signup(den);
+
+        System.out.println("-------------- admin --------------");
+        UserSignIn userSignIn = new UserSignIn("admin", "admin");
+        ResponseEntity<TokenResponse> tokenResponse = userService.signin(userSignIn);
+        System.out.println(tokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- student --------------");
+        UserSignIn suserSignIn = new UserSignIn("client", "client");
+        ResponseEntity<TokenResponse> stokenResponse = userService.signin(suserSignIn);
+        System.out.println(stokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- teacher --------------");
+        UserSignIn teaSignIn = new UserSignIn("tea", "tea");
+        ResponseEntity<TokenResponse> astokenResponse = userService.signin(teaSignIn);
+        System.out.println(astokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- hr --------------");
+        UserSignIn hrSignIn = new UserSignIn("hr", "hr");
+        ResponseEntity<TokenResponse> hrtokenResponse = userService.signin(hrSignIn);
+        System.out.println(hrtokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- re --------------");
+        UserSignIn qteaSignIn = new UserSignIn("re", "re");
+        ResponseEntity<TokenResponse> qastokenResponse = userService.signin(qteaSignIn);
+        System.out.println(qastokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- fi --------------");
+        UserSignIn wteaSignIn = new UserSignIn("fi", "fi");
+        ResponseEntity<TokenResponse> wastokenResponse = userService.signin(wteaSignIn);
+        System.out.println(wastokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- dor --------------");
+        UserSignIn eteaSignIn = new UserSignIn("dor", "dor");
+        ResponseEntity<TokenResponse> eastokenResponse = userService.signin(eteaSignIn);
+        System.out.println(eastokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        System.out.println("-------------- den --------------");
+        UserSignIn zteaSignIn = new UserSignIn("den", "den");
+        ResponseEntity<TokenResponse> zastokenResponse = userService.signin(zteaSignIn);
+        System.out.println(zastokenResponse.getBody().getToken());
+        System.out.println("-----------------------------------");
+
+        studentCourseService.addCourse(new StudentCourse("normal", "it", "kmitl"));
+        studentCourseService.addCourse(new StudentCourse("hello", "world", "hello, world"));
+        studentCourseService.addCourse(new StudentCourse("world", "hello", "world, hello"));
+
+    }
 
 }
