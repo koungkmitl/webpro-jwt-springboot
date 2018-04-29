@@ -1,5 +1,6 @@
 package murraco.domain;
 
+import murraco.domain_enum.LevelOfConference;
 import murraco.domain_enum.State;
 import murraco.domain_enum.TypePublic;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,7 +35,8 @@ public class Conference {
     private float costAbode;
     private float costRegister;
     private float maximumMoneySupport;
-    private int levelOfConference;
+    @Enumerated(EnumType.STRING)
+    private LevelOfConference levelOfConference;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -153,11 +155,11 @@ public class Conference {
         this.maximumMoneySupport = maximumMoneySupport;
     }
 
-    public int getLevelOfConference() {
+    public LevelOfConference getLevelOfConference() {
         return levelOfConference;
     }
 
-    public void setLevelOfConference(int levelOfConference) {
+    public void setLevelOfConference(LevelOfConference levelOfConference) {
         this.levelOfConference = levelOfConference;
     }
 
@@ -191,5 +193,8 @@ public class Conference {
 
     public void setQualityConference(QualityConference qualityConference) {
         this.qualityConference = qualityConference;
+    }
+
+    public Conference() {
     }
 }

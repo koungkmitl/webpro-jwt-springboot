@@ -78,8 +78,19 @@ public class ConferenceTeacherService {
         return new ResponseEntity<TeacherConferenceResponse>(new TeacherConferenceResponse(teachers, amount), HttpStatus.OK);
     }
 
-    public ResponseEntity<Teacher> test(HttpServletRequest req){
-        Teacher teacher = teacherRepository.findOneByUser(userRepository.findByUsername(tokenService.getUsername(req)));
-        return new ResponseEntity<Teacher>(teacher, HttpStatus.OK );
+    public ResponseEntity<List<Conference>> test(HttpServletRequest req){
+        List<Conference> conference = null;
+        try {
+             conference = conferenceRepository.findAllByUser(userRepository.findByUsername(tokenService.getUsername(req)));
+        } catch ( Exception e){
+            System.out.println(e);
+        }
+        for (Conference c: conference) {
+            System.out.println(c.getResearchName());
+            c.setQualityConference(null);
+            c.setComments(null);
+            c.setImages(null);
+        }
+        return new ResponseEntity<List<Conference>>(conference, HttpStatus.OK );
     }
 }

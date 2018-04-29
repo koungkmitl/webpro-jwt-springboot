@@ -56,7 +56,7 @@ public class RequestConferenceDto {
     private float costAbode;
     private float costRegister;
     private float maximumMoneySupport;
-    private int levelOfConference;
+    private String levelOfConference;
     private String conferenceTypeDoc;
     private int userId;                        // setter
 
@@ -327,11 +327,11 @@ public class RequestConferenceDto {
         return this;
     }
 
-    public int getLevelOfConference() {
+    public String getLevelOfConference() {
         return levelOfConference;
     }
 
-    public RequestConferenceDto setLevelOfConference(int levelOfConference) {
+    public RequestConferenceDto setLevelOfConference(String levelOfConference) {
         this.levelOfConference = levelOfConference;
         return this;
     }

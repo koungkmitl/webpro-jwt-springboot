@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ConferenceRepository extends JpaRepository<Conference, Integer>{
+    List<Conference> findAllByUser(User user);
 }
