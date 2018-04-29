@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/comment/check")
-public class CommentCheck {
+public class CommentCheckController {
 
     @Autowired
     private CommentService commentService;
