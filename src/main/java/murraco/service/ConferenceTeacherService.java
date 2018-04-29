@@ -4,6 +4,7 @@ import murraco.domain.*;
 import murraco.dto.ConferenceDto;
 import murraco.dto.CustomResponse;
 import murraco.dto.RequestConferenceDto;
+import murraco.dto.TeacherConferenceResponse;
 import murraco.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
+import java.util.List;
 
 @Service
 public class ConferenceTeacherService {
@@ -34,12 +36,6 @@ public class ConferenceTeacherService {
 
     @Autowired
     private SjrRepository sjrRepository;
-
-    @Autowired
-    private ScopusRepository scopusRepository;
-
-    @Autowired
-    private CcrRepository ccrRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -69,22 +65,16 @@ public class ConferenceTeacherService {
             Sjr sjr = modelMapper.map(requestConferenceDto, Sjr.class);
             sjr.setConference(conference);
             sjrRepository.save(sjr);
-        } else if ( typeQuaCon.equals("scopus") ) {
-            Scopus scopus = modelMapper.map(requestConferenceDto, Scopus.class);
-            scopus.setConference(conference);
-            scopusRepository.save(scopus);
-        } else if ( typeQuaCon.equals("ccr") ) {
-            Ccr ccr = modelMapper.map(requestConferenceDto, Ccr.class);
-            ccr.setConference(conference);
-            ccrRepository.save(ccr);
         }
 
         return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<CustomResponse> list(HttpServletRequest req){
+    public ResponseEntity<TeacherConferenceResponse> list(HttpServletRequest req){
         User user = userRepository.findByUsername(tokenService.getUsername(req));
+        int amount = teacherRepository.countByUser(user);
+        List<Teacher> teachers = teacherRepository.findByUser(user);
 
-        return new ResponseEntity<CustomResponse>(new CustomResponse(""), HttpStatus.CREATED);
+        return new ResponseEntity<TeacherConferenceResponse>(new TeacherConferenceResponse(teachers, amount), HttpStatus.OK);
     }
 }
