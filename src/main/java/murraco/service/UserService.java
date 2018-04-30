@@ -47,8 +47,13 @@ public class UserService {
 
     public ResponseEntity<TokenResponse> signin(UserSignIn userSignIn) {
         try {
+            User user = userRepository.findByUsername(userSignIn.getUsername());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userSignIn.getUsername(), userSignIn.getPassword()));
-            return new ResponseEntity<TokenResponse>(new TokenResponse(jwtTokenProvider.createToken(userSignIn.getUsername(), userRepository.findByUsername(userSignIn.getUsername()).getRoles())), HttpStatus.OK);
+            TokenResponse tokenResponse = new TokenResponse(jwtTokenProvider.createToken(userSignIn.getUsername(), userRepository.findByUsername(userSignIn.getUsername()).getRoles()));
+            tokenResponse.setPrefixName(user.getPrefixName());
+            tokenResponse.setFirstname(user.getFirstname());
+            tokenResponse.setLastname(user.getLastname());
+            return new ResponseEntity<TokenResponse>(tokenResponse, HttpStatus.OK);
 
         } catch (AuthenticationException e) {
             throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
