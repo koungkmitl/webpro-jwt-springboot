@@ -7,6 +7,7 @@ import murraco.domain.Conference;
 import murraco.domain.Image;
 import murraco.domain.Teacher;
 import murraco.domain.User;
+import murraco.domain_enum.State;
 import murraco.domain_enum.TypeImage;
 import murraco.dto.CustomResponse;
 import murraco.dto.ImageDto;
@@ -78,6 +79,8 @@ public class TeacherImageService {
             image.setTypeImage(TypeImage.FORM);
         } else {
             image.setTypeImage(TypeImage.ACCEPTANCE);
+            teacher.setState(State.ASSOCIATEDEAN_P);
+            teacherRepository.save(teacher);
         }
         image.setUrl(String.format("/%s/%d-%s.%s", BUCKET_NAME, user.getId(), java.util.UUID.randomUUID().toString(), type_file));
         image.setConference(teacher);
